@@ -45,7 +45,7 @@ export default function ControlPanel({ data, setData, onDownload, setCropStudent
   return (
     <div className="w-full lg:w-[400px] bg-white h-[45vh] lg:h-screen shrink-0 overflow-y-auto border-b lg:border-b-0 lg:border-r border-gray-200 p-6 flex flex-col shadow-lg z-20">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-        <Users className="text-blue-600" /> Poster Generator
+        <Users className="text-blue-600" /> SVNIT Poster Generator
       </h2>
 
       <div className="space-y-6">

@@ -102,7 +102,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-screen bg-gray-100 overflow-hidden font-sans">
+    <div className="flex flex-col-reverse lg:flex-row w-full min-h-screen lg:h-screen bg-gray-100 lg:overflow-hidden font-sans">
       
       {/* Control Panel (Left Sidebar) */}
       <ControlPanel 
@@ -114,14 +114,29 @@ function App() {
         onEditLogo={() => setIsEditingLogo(true)}
       />
 
-      {/* Main Preview Area */}
-      <div className="flex-1 flex flex-col items-center justify-center p-8 overflow-y-auto bg-gray-800">
-        <div className="mb-4 text-gray-400 font-medium">
-          Live Preview (1080x1080)
+      {/* Main Preview Area (Top on mobile, Right on desktop) */}
+      <div className="flex-1 flex flex-col items-center justify-start lg:justify-center p-4 lg:p-8 lg:overflow-y-auto bg-gray-800">
+        <div className="mb-2 lg:mb-4 text-gray-400 font-medium text-sm lg:text-base">
+          Live Preview
         </div>
         
-        <div className="scale-[0.3] sm:scale-[0.4] md:scale-[0.55] lg:scale-[0.6] xl:scale-[0.7] origin-top shadow-2xl transition-transform duration-300">
-          <PosterCanvas data={data} forwardRef={posterRef} />
+        {/* Wrapper to handle the bounding box of the scaled element so it doesn't cause overflow */}
+        {/* Scale 0.3 = 324px, Scale 0.4 = 432px, Scale 0.55 = 594px, Scale 0.6 = 648px, Scale 0.7 = 756px */}
+        <div className="
+          w-[324px] h-[324px] 
+          sm:w-[432px] sm:h-[432px] 
+          md:w-[594px] md:h-[594px] 
+          lg:w-[648px] lg:h-[648px] 
+          xl:w-[756px] xl:h-[756px] 
+          relative shrink-0 mb-6 lg:mb-0"
+        >
+          <div className="
+            absolute top-0 left-0 origin-top-left
+            scale-[0.3] sm:scale-[0.4] md:scale-[0.55] lg:scale-[0.6] xl:scale-[0.7] 
+            shadow-2xl transition-transform duration-300"
+          >
+            <PosterCanvas data={data} forwardRef={posterRef} />
+          </div>
         </div>
       </div>
 
